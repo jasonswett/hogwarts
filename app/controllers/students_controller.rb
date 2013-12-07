@@ -9,11 +9,10 @@ class StudentsController < ApplicationController
 
   def new
     @student = Student.new
-    @house_options = House.all
   end
 
   def create
-    @student = Student.new(params[:student])
+    @student = Student.new(params[:student].merge(house_id: House.random_id))
 
     if @student.save
       redirect_to action: 'index'
