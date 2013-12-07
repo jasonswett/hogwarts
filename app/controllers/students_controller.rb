@@ -9,6 +9,7 @@ class StudentsController < ApplicationController
 
   def new
     @student = Student.new
+    @house_options = House.all
   end
 
   def create

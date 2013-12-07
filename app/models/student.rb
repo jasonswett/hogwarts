@@ -1,3 +1,4 @@
 class Student < ActiveRecord::Base
-  has_many :houses
+  belongs_to :house
+  attr_accessible :name, :house_id
 end
