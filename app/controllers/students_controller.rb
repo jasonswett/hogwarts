@@ -8,9 +8,16 @@ class StudentsController < ApplicationController
   end
 
   def new
-    new_student = Student.new(parmas)
-    student = Student.create
-    house << student
-    redirect to 'idnex'
+    @student = Student.new
+  end
+
+  def create
+    @student = Student.new(params[:student])
+
+    if @student.save
+      redirect_to action: 'index'
+    else
+      render action: 'new'
+    end
   end
 end

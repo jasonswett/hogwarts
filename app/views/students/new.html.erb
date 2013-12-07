@@ -1,7 +1,23 @@
 <h1>Make a new student!<h1>
-<form action="students/new" action="post">
-  <label>Student Name<lable>
 
-  <input type="text" placeholder="name">
-  </form>
-<button>Add Student!</button>
+<%= form_for(@student, role: "form") do |f| %>
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% @student.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_field :name, placeholder: "Name" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add Student!" %>
+  </div>
+<% end %>
